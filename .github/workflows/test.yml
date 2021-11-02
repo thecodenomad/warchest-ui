@@ -1,0 +1,19 @@
+name: Warchest Battle
+
+on:
+  pull_request:
+    branches:
+      - devel
+  push:
+    branches:
+      - devel
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          npm run build
+          npm run lint
