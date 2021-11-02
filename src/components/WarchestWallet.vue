@@ -1,14 +1,18 @@
 <template>
   <div class="wc-card -shadow">
     <h4 class="title">{{ wc_coins[0].coin_symbol }}</h4>
-    <p><font-awesome-icon class="wc-coins" icon="coins" />{{ wc_coins[0].amount }}</p>
-    <p v-if="wc_coins[0].amount*wc_coins[0].coin_rates.USD > 0">
-      Current Net Profit: <span class="profitable">${{ wc_coins[0].amount*wc_coins[0].coin_rates["USD"]}}</span>
-    </p>
-    <p v-else>
-      Current Net Profit: <span class="red-alert">${{ wc_coins[0].amount*wc_coins[0].coin_rates["USD"]}}</span>
-    </p>
-    <p> Transaction(s): {{ wc_coins[0].transactions.length }} </p>
+    <div class="wc-card-num-coins">
+      <p><font-awesome-icon class="wc-coins" icon="coins" />{{ wc_coins[0].amount }}</p>
+    </div>
+    <div class="wc-card-stats">
+      <p v-if="wc_coins[0].amount*wc_coins[0].coin_rates.USD > 0">
+        <span class="profitable">${{ wc_coins[0].amount*wc_coins[0].coin_rates["USD"]}}</span>
+      </p>
+      <p v-else>
+        <span class="red-alert">${{ wc_coins[0].amount*wc_coins[0].coin_rates["USD"]}}</span>
+      </p>
+      <p> Transaction(s): {{ wc_coins[0].transactions.length }} </p>
+    </div>
   </div>
 </template>
 
@@ -21,7 +25,7 @@ export default {
         {
           account_id: "some-thing-long",
           cost: "0.27",
-          amount: "1.0",
+          amount: "100.2578",
           coin_rates: {
             "EUR": "0.23",
             "GBP": "0.19",
@@ -50,7 +54,7 @@ Lesson 6 - https://github.com/Code-Pop/real-world-vue
 <style scoped>
 .wc-card {
   padding: 20px;
-  margin-bottom: 24px;
+  margin-bottom: 5px;
   transition: all 0.2s linear;
   cursor: pointer;
 }
@@ -76,5 +80,8 @@ Lesson 6 - https://github.com/Code-Pop/real-world-vue
 }
 .wc-coins {
   padding-right: 10px;
+}
+.wc-card-stats {
+  text-align: left;
 }
 </style>
