@@ -27,7 +27,7 @@
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
-    "root": true,
+    "root": false,
     "env": {
       "node": true
     },
@@ -40,6 +40,9 @@
     },
     "rules": {}
   },
+  "eslintIgnore": [
+    "plugins/"
+  ],
   "browserslist": [
     "> 1%",
     "last 2 versions",

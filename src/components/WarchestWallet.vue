@@ -1,50 +1,41 @@
 <template>
-  <div v-if="loading">Loading...</div>
-  <div v-else class="wc-card -shadow">
-    <h4 class="title">{{ wc_coins[0].coin_symbol }}</h4>
-    <div class="wc-card-num-coins">
-      <p><font-awesome-icon class="wc-coins" icon="coins" />{{ wc_coins[0].amount }}</p>
-    </div>
-    <div class="wc-card-stats">
-      <p v-if="wc_coins[0].amount*wc_coins[0].coin_rates.USD > 0">
-        <span class="profitable">${{ wc_coins[0].amount*wc_coins[0].coin_rates["USD"]}}</span>
-      </p>
-      <p v-else>
-        <span class="red-alert">${{ wc_coins[0].amount*wc_coins[0].coin_rates["USD"]}}</span>
-      </p>
-      <p> Transaction(s): {{ wc_coins[0].transactions.length }} </p>
+  <div>
+    <div v-for="(coin, symbol) in wc_coins" :key="symbol" class="wc-card -shadow">
+      <h4 class="title">{{ symbol }}</h4>
+      <div class="wc-card-num-coins">
+        <p><font-awesome-icon class="wc-coins" icon="coins" />{{ coin.amount }}</p>
+      </div>
+      <div class="wc-card-stats">
+        <p v-if="coin.amount*coin.rates.USD > 0">
+          <span class="profitable">${{ coin.amount*coin.rates["USD"]}}</span>
+        </p>
+        <p v-else>
+          <span class="red-alert">${{ coin.amount*coin.coin_rates["USD"]}}</span>
+        </p>
+        <p> Transaction(s): {{ coin.transactions.length }} </p>
+      </div>
     </div>
   </div>
+<!--<div>something is here... num coins: {{ wc_coins }}</div>-->
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data(){
     return {
       name: "WarchestWallet",
-      wc_coins: null,
-      loading: true,
+      wc_coins: [],
+      loading: false,
       errored: false
-          //[
-      //   {
-      //     account_id: "some-thing-long",
-      //     cost: "0.27",
-      //     amount: "100.2578",
-      //     coin_rates: {
-      //       "EUR": "0.23",
-      //       "GBP": "0.19",
-      //       "USD": "0.28"
-      //     },
-      //     coin_symbol: 'DOGE',
-      //     transactions: [
-      //       {
-      //         "num_coins": "1.0",
-      //         "purchased_price": "0.2700",
-      //         "transaction_fee": ".001"
-      //       }
-      //     ]
-      //   }
-      // ]
+    }
+  },
+  async created () {
+    try {
+      const response = await axios.get('http://localhost:8080/api/wallet')
+      this.wc_coins = response.data.coins
+    } catch (e) {
+      this.errors.push(e)
     }
   }
 }
