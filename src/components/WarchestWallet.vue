@@ -1,5 +1,6 @@
 <template>
-  <div class="wc-card -shadow">
+  <div v-if="loading">Loading...</div>
+  <div v-else class="wc-card -shadow">
     <h4 class="title">{{ wc_coins[0].coin_symbol }}</h4>
     <div class="wc-card-num-coins">
       <p><font-awesome-icon class="wc-coins" icon="coins" />{{ wc_coins[0].amount }}</p>
@@ -21,26 +22,29 @@ export default {
   data(){
     return {
       name: "WarchestWallet",
-      wc_coins: [
-        {
-          account_id: "some-thing-long",
-          cost: "0.27",
-          amount: "100.2578",
-          coin_rates: {
-            "EUR": "0.23",
-            "GBP": "0.19",
-            "USD": "0.28"
-          },
-          coin_symbol: 'DOGE',
-          transactions: [
-            {
-              "num_coins": "1.0",
-              "purchased_price": "0.2700",
-              "transaction_fee": ".001"
-            }
-          ]
-        }
-      ]
+      wc_coins: null,
+      loading: true,
+      errored: false
+          //[
+      //   {
+      //     account_id: "some-thing-long",
+      //     cost: "0.27",
+      //     amount: "100.2578",
+      //     coin_rates: {
+      //       "EUR": "0.23",
+      //       "GBP": "0.19",
+      //       "USD": "0.28"
+      //     },
+      //     coin_symbol: 'DOGE',
+      //     transactions: [
+      //       {
+      //         "num_coins": "1.0",
+      //         "purchased_price": "0.2700",
+      //         "transaction_fee": ".001"
+      //       }
+      //     ]
+      //   }
+      // ]
     }
   }
 }
