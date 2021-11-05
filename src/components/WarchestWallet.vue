@@ -3,7 +3,7 @@
     <h2>Warchest!</h2>
     <v-divider></v-divider>
     <div v-if="wc_coins == nil || wc_coins.length == 0">
-      <v-img class="sad-panda" src="@/assets/sad-panda.png"></v-img>
+      <v-img class="sad-panda" src="./assets/sad-panda.png"></v-img>
       <h3 class="sad-panda-text">Sad day. No coins!</h3>
     </div>
     <div v-else>
@@ -55,6 +55,7 @@ export default {
       const response = await axios.get('http://localhost:8080/api/wallet')
       this.wc_coins = response.data.coins
     } catch (e) {
+      errored
       console.log("Failed! This is why: "+e)
     }
   }
