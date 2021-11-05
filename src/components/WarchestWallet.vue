@@ -55,7 +55,7 @@ export default {
       const response = await axios.get('http://localhost:8080/api/wallet')
       this.wc_coins = response.data.coins
     } catch (e) {
-      errored: true
+      this.errored = true
       console.log("Failed! This is why: "+e)
     }
   }
