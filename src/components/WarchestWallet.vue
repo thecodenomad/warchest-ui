@@ -6,7 +6,7 @@
       <img src="@/assets/sad-panda.png">
       <h3 class="sad-panda-text">Sad day. No coins!</h3>
     </div>
-    <div v-else>
+    <div v-else-if="wc_coins.length > 0">
       <v-card v-for="(coin, symbol) in wc_coins" :key="symbol" class="mx-auto wc-card" outlined>
         <v-img
             src=""
@@ -34,6 +34,10 @@
           </v-btn>
         </v-card-text>
       </v-card>
+    </div>
+    <div v-else>
+      <img src="@/assets/sad-panda.png">
+      <h3 class="sad-panda-text">Sad day. Config issue. U haz API kayz?</h3>
     </div>
   </div>
 </template>
@@ -68,9 +72,6 @@ Reference: https://www.vuemastery.com/courses/real-world-vue-js/single-file-vue-
 Lesson 6 - https://github.com/Code-Pop/real-world-vue
 -->
 <style scoped>
-.sad-panda-text {
-  text-align: center;
-}
 .wc-card {
   padding: 20px;
   margin-bottom: 5px;
