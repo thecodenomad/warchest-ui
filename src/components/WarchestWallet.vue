@@ -1,7 +1,7 @@
 <template>
   <div class="wc-wallet">
     <h2>Warchest!</h2>
-    <div v-if="wc_coins.length == 0">
+    <div v-if="wc_coins == nil || wc_coins.length == 0">
       <img src="@/assets/sad-panda.png">
       <h3 class="sad-panda-text">Sad day. No coins!</h3>
     </div>
