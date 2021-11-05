@@ -3,7 +3,7 @@
     <h2>Warchest!</h2>
     <v-divider></v-divider>
     <div v-if="errored || wc_coins.length == 0">
-      <v-img class="sad-panda" src="./assets/sad-panda.png"></v-img>
+      <img src="@/assets/sad-panda.png">
       <h3 class="sad-panda-text">Sad day. No coins!</h3>
     </div>
     <div v-else>
