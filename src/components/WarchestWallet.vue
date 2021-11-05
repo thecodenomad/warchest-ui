@@ -1,8 +1,9 @@
 <template>
   <div class="wc-wallet">
     <h2>Warchest!</h2>
+    <v-divider></v-divider>
     <div v-if="wc_coins == nil || wc_coins.length == 0">
-      <img src="@/assets/sad-panda.png">
+      <v-img class="sad-panda" src="@/assets/sad-panda.png"></v-img>
       <h3 class="sad-panda-text">Sad day. No coins!</h3>
     </div>
     <div v-else>
@@ -85,6 +86,11 @@ Lesson 6 - https://github.com/Code-Pop/real-world-vue
 
 .wc-button {
   margin: 5px;
+}
+
+.sad-panda {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .wc-link {
