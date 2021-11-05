@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-for="(coin, symbol) in wc_coins" :key="symbol" class="wc-card -shadow">
+    <h1>Warchest!</h1>
+    <div v-if="wc_coins.length == 0">Sad day, no coins!</div>
+    <div v-else>
+      <div v-for="(coin, symbol) in wc_coins" :key="symbol" class="wc-card -shadow">
       <h4 class="title">{{ symbol }}</h4>
       <div class="wc-card-num-coins">
         <p><font-awesome-icon class="wc-coins" icon="coins" />{{ coin.amount }}</p>
@@ -15,8 +18,8 @@
         <p> Transaction(s): {{ coin.transactions.length }} </p>
       </div>
     </div>
+    </div>
   </div>
-<!--<div>something is here... num coins: {{ wc_coins }}</div>-->
 </template>
 
 <script>
@@ -32,10 +35,11 @@ export default {
   },
   async created () {
     try {
+      console.log("Querying backend for coins...")
       const response = await axios.get('http://localhost:8080/api/wallet')
       this.wc_coins = response.data.coins
     } catch (e) {
-      this.errors.push(e)
+      console.log("Failed! This is why: "+e)
     }
   }
 }
