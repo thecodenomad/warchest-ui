@@ -1,23 +1,38 @@
 <template>
-  <div>
-    <h1>Warchest!</h1>
-    <div v-if="wc_coins.length == 0">Sad day, no coins!</div>
-    <div v-else>
-      <div v-for="(coin, symbol) in wc_coins" :key="symbol" class="wc-card -shadow">
-      <h4 class="title">{{ symbol }}</h4>
-      <div class="wc-card-num-coins">
-        <p><font-awesome-icon class="wc-coins" icon="coins" />{{ coin.amount }}</p>
-      </div>
-      <div class="wc-card-stats">
-        <p v-if="coin.amount*coin.rates.USD > 0">
-          <span class="profitable">${{ coin.amount*coin.rates["USD"]}}</span>
-        </p>
-        <p v-else>
-          <span class="red-alert">${{ coin.amount*coin.coin_rates["USD"]}}</span>
-        </p>
-        <p> Transaction(s): {{ coin.transactions.length }} </p>
-      </div>
+  <div class="wc-wallet">
+    <h2>Warchest!</h2>
+    <div v-if="wc_coins.length == 0">
+      <img src="@/assets/sad-panda.png">
+      <h3 class="sad-panda-text">Sad day. No coins!</h3>
     </div>
+    <div v-else>
+      <v-card v-for="(coin, symbol) in wc_coins" :key="symbol" class="mx-auto wc-card" outlined>
+        <v-img
+            src=""
+            class="white--text align-end"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="200px"
+        >
+          <v-card-title v-text="symbol"></v-card-title>
+          <v-card-subtitle>${{ coin.amount*coin.rates["USD"]}}</v-card-subtitle>
+        </v-img>
+
+        <v-card-text>
+          <v-btn class="wc-button">
+            <v-icon>mdi-fire</v-icon>
+          </v-btn>
+
+          <v-btn class="wc-button">
+            <v-icon>mdi-chart-line</v-icon>
+            Stats
+          </v-btn>
+
+          <v-btn class="wc-button">
+            <v-icon>mdi-format-list-bulleted</v-icon>
+            Transactions
+          </v-btn>
+        </v-card-text>
+      </v-card>
     </div>
   </div>
 </template>
@@ -51,6 +66,9 @@ Reference: https://www.vuemastery.com/courses/real-world-vue-js/single-file-vue-
 Lesson 6 - https://github.com/Code-Pop/real-world-vue
 -->
 <style scoped>
+.sad-panda-text {
+  text-align: center;
+}
 .wc-card {
   padding: 20px;
   margin-bottom: 5px;
@@ -64,6 +82,11 @@ Lesson 6 - https://github.com/Code-Pop/real-world-vue
 .wc-card > .title {
   margin: 0;
 }
+
+.wc-button {
+  margin: 5px;
+}
+
 .wc-link {
   color: black;
   text-decoration: none;
