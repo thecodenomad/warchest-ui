@@ -35,7 +35,7 @@
                     <v-row>
                       <v-col>
                         <v-chip class="ma-2 wc-cost">
-                          <v-icon large>mdi-currency-usd</v-icon>Investment: {{ formatCurrency(coin.profit) }}
+                          <v-icon large>mdi-currency-usd</v-icon>Investment: {{ formatCurrency(coin.cost) }}
                         </v-chip>
                       </v-col>
                     </v-row>
