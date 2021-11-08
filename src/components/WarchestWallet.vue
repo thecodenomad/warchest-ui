@@ -16,7 +16,7 @@
           <v-col cols="12">
             <v-card v-for="(coin, symbol) in wc_coins" :key="symbol" class="wc-card mx-auto">
               <v-card-text>
-                <v-row align="center"><v-col><h2>{{ symbol }}</h2></v-col></v-row>
+                <v-row align="center" class="wc-symbol-row"><v-col><h2>{{ symbol }}</h2></v-col></v-row>
                 <v-row align="center">
                   <v-col
                     class="text-h2"
@@ -24,18 +24,18 @@
                   >
                     <v-row>
                       <v-col>
-                        <v-chip v-if="coin.profit > 0" class="ma-2 profitable wc-stats">
+                        <v-chip v-if="coin.profit > 0" class="ma-2 profitable wc-stats" large>
                           <v-icon large left>mdi-arrow-top-right</v-icon> {{ formatCurrency(coin.profit) }}
                         </v-chip>
-                        <v-chip v-else class="ma-2 red wc-stats">
+                        <v-chip v-else class="ma-2 red wc-stats" large>
                           <v-icon large>mdi-arrow-bottom-right</v-icon>{{ formatCurrency(coin.profit) }}
                         </v-chip>
                       </v-col>
                     </v-row>
                     <v-row>
                       <v-col>
-                        <v-chip class="ma-2 wc-cost">
-                          <v-icon large>mdi-currency-usd</v-icon>Investment: {{ formatCurrency(coin.cost) }}
+                        <v-chip class="ma-2 wc-cost" large>
+                          <v-icon large >mdi-currency-usd</v-icon>Investment: {{ formatCurrency(coin.cost) }}
                         </v-chip>
                       </v-col>
                     </v-row>
@@ -47,14 +47,14 @@
                 </v-row>
               </v-card-text>
               <v-card-actions>
-                <v-btn class="wc-button">
+                <v-btn class="wc-button" @click="sell">
                   <v-icon>mdi-fire</v-icon>
                 </v-btn>
-                <v-btn class="wc-button">
+                <v-btn class="wc-button" @click="stats">
                   <v-icon>mdi-chart-line</v-icon>
                   Stats
                 </v-btn>
-                <v-btn class="wc-button">
+                <v-btn class="wc-button" @click="transactions">
                   <v-icon>mdi-format-list-bulleted</v-icon>
                   Transactions
                 </v-btn>
@@ -93,6 +93,15 @@ export default {
     formatCurrency: function (currency) {
       currency = currency.toFixed(2);
       return currency
+    },
+    sell () {
+      alert('WIP: Sell! Sell! Sell!')
+    },
+    stats () {
+      alert('WIP: This should show you some overal stats for the current coin.')
+    },
+    transactions () {
+      alert('WIP: This should send you to the transactions for the current coin.')
     }
   }
 }
@@ -122,10 +131,6 @@ h3 {
   margin: 0;
 }
 
-.wc-coin-img {
-
-}
-
 .wc-button {
   margin: 5px;
 }
@@ -133,11 +138,6 @@ h3 {
 .sad-panda-img {
   margin-top: 20px;
   margin-bottom: 20px;
-}
-
-.wc-coin-stats {
-  padding-top: 15px;
-  font-size: 20px;
 }
 
 .profitable i.v-icon.v-icon {
@@ -151,6 +151,14 @@ h3 {
 .wc-cost i.v-icon.v-icon {
   color: darkcyan;
   font-size: 14px;
+}
+
+.wc-symbol-row {
+  color: #eee;
+  padding-bottom: 10px;
+  background-color: darkslategray;
+  border-radius: 5px 25px 25px 5px;
+  padding-top: 10px;
 }
 
 </style>
